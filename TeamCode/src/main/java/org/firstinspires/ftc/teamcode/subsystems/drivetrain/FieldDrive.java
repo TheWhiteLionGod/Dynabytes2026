@@ -32,12 +32,4 @@ public class FieldDrive extends RobotDrive {
     public void right(double pwr, double heading) {
         drive(0, Math.abs(pwr), 0, heading);
     }
-
-    public void turnLeft(double pwr, double heading) {
-        drive(0, 0, Math.abs(pwr), heading);
-    }
-
-    public void turnRight(double pwr, double heading) {
-        drive(0, 0, -Math.abs(pwr), heading);
-    }
 }
