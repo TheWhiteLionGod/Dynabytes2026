@@ -14,22 +14,22 @@ public class TestRobotDrive extends LinearOpMode {
         drivetrain = new RobotDrive(hardwareMap, telemetry);
         waitForStart();
 
-        drivetrain.robotForward(0.5);
+        drivetrain.forward(0.5);
         sleep(1000);
 
-        drivetrain.robotBackward(0.5);
+        drivetrain.backward(0.5);
         sleep(1000);
 
-        drivetrain.robotLeft(0.5);
+        drivetrain.left(0.5);
         sleep(1000);
 
-        drivetrain.robotRight(0.5);
+        drivetrain.right(0.5);
         sleep(1000);
 
-        drivetrain.robotTurnLeft(0.5);
+        drivetrain.turnLeft(0.5);
         sleep(1000);
 
-        drivetrain.robotTurnRight(0.5);
+        drivetrain.turnRight(0.5);
         sleep(1000);
 
         drivetrain.stop();

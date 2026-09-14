@@ -27,7 +27,7 @@ public class RobotDrive {
         telemetry.addData("Drivetrain", "Initialized");
     }
 
-    public void robotDrive(double forward, double strafe, double turn) {
+    public void drive(double forward, double strafe, double turn) {
         double frontLeft = forward + strafe - turn;
         double backLeft = forward - strafe - turn;
         double frontRight = forward - strafe + turn;
@@ -53,28 +53,28 @@ public class RobotDrive {
         telemetry.addData("Drivetrain", "Moving");
     }
 
-    public void robotForward(double pwr) {
-        robotDrive(Math.abs(pwr), 0, 0);
+    public void forward(double pwr) {
+        drive(Math.abs(pwr), 0, 0);
     }
 
-    public void robotBackward(double pwr) {
-        robotDrive(-Math.abs(pwr), 0, 0);
+    public void backward(double pwr) {
+        drive(-Math.abs(pwr), 0, 0);
     }
 
-    public void robotLeft(double pwr) {
-        robotDrive(0, -Math.abs(pwr), 0);
+    public void left(double pwr) {
+        drive(0, -Math.abs(pwr), 0);
     }
 
-    public void robotRight(double pwr) {
-        robotDrive(0, Math.abs(pwr), 0);
+    public void right(double pwr) {
+        drive(0, Math.abs(pwr), 0);
     }
 
-    public void robotTurnLeft(double pwr) {
-        robotDrive(0, 0, Math.abs(pwr));
+    public void turnLeft(double pwr) {
+        drive(0, 0, Math.abs(pwr));
     }
 
-    public void robotTurnRight(double pwr) {
-        robotDrive(0, 0, -Math.abs(pwr));
+    public void turnRight(double pwr) {
+        drive(0, 0, -Math.abs(pwr));
     }
 
     public void stop() {
