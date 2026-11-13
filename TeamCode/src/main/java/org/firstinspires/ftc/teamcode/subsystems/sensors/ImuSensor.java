@@ -28,4 +28,12 @@ public class ImuSensor {
         telemetry.addData("IMU", "Current Heading is " + heading);
         return heading;
     }
+
+    public static double angleWrap(double radians) {
+        return Math.IEEEremainder(radians, 2 * Math.PI);
+    }
+
+    public double angleWrap() {
+        return ImuSensor.angleWrap(getHeading());
+    }
 }
