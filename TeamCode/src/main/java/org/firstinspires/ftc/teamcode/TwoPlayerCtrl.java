@@ -42,5 +42,9 @@ public class TwoPlayerCtrl extends Dynawheels {
             telemetry.update();
             sleep(50);
         }
+
+        if (gamepad1.right_trigger_pressed) roller.forward();
+        else if (gamepad1.right_bumper) roller.backward();
+        else roller.stop();
     }
 }
