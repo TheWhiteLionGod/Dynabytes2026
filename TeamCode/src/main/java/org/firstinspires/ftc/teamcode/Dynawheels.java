@@ -15,7 +15,7 @@ public abstract class Dynawheels extends LinearOpMode {
     public static class DynawheelsConstant {
         public static double TURN_TO_ANGLE_KP = 0.015;
         public static double TURN_TO_ANGLE_MAX = 0.6;
-        public static double TURN_TO_ANGLE_TOLERANCE = Math.PI/90;
+        public static double TURN_TO_ANGLE_TOLERANCE = 2.0;
     }
 
     public RobotDrive drivetrain;
