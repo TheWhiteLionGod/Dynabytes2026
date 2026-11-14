@@ -29,7 +29,7 @@ public class PIDFTest extends Dynawheels {
 
     @Override
     public void config() {
-        shooter = hardwareMap.get(DcMotorEx.class, "Launcher");
+        shooter = hardwareMap.get(DcMotorEx.class, "Shooter");
         shooter.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
         shooter.setPIDFCoefficients(DcMotorEx.RunMode.RUN_USING_ENCODER, PIDF);
 
