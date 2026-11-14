@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import org.firstinspires.ftc.teamcode.Dynawheels;
 import org.firstinspires.ftc.teamcode.subsystems.drivetrain.RobotDrive;
 
-@Autonomous(name="TestRobotDrive", group="TEST")
+@Autonomous(name="TestTurnToAngle", group="TEST")
 public class TestTurnToAngle extends Dynawheels {
 
     @Override

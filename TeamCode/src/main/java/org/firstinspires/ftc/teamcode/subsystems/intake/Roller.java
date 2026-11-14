@@ -1,11 +1,17 @@
 package org.firstinspires.ftc.teamcode.subsystems.intake;
 
+import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 public class Roller {
+    @Config
+    public static class RollerConstants {
+        public static double POWER = 0.5;
+    }
+
     private final DcMotorEx roller;
     private final Telemetry telemetry;
     public Roller(HardwareMap hardwareMap, Telemetry telemetry) {
@@ -14,12 +20,12 @@ public class Roller {
     }
 
     public void forward() {
-        roller.setPower(0.5);
+        roller.setPower(Math.abs(RollerConstants.POWER));
         telemetry.addData("Roller", "Forward");
     }
 
     public void backward() {
-        roller.setPower(-0.5);
+        roller.setPower(-Math.abs(RollerConstants.POWER));
         telemetry.addData("Roller", "Backward");
     }
 
