@@ -8,6 +8,7 @@ import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.teamcode.subsystems.drivetrain.RobotDrive;
 import org.firstinspires.ftc.teamcode.subsystems.intake.Roller;
+import org.firstinspires.ftc.teamcode.subsystems.outtake.Shooter;
 import org.firstinspires.ftc.teamcode.subsystems.sensors.ImuSensor;
 
 public abstract class Dynawheels extends LinearOpMode {
@@ -21,6 +22,7 @@ public abstract class Dynawheels extends LinearOpMode {
     public RobotDrive drivetrain;
     public ImuSensor imu;
     public Roller roller;
+    public Shooter shooter;
 
     @Override
     public void runOpMode() {
@@ -40,6 +42,7 @@ public abstract class Dynawheels extends LinearOpMode {
         drivetrain = new RobotDrive(hardwareMap, telemetry);
         imu = new ImuSensor(hardwareMap, telemetry);
         roller = new Roller(hardwareMap, telemetry);
+        shooter = new Shooter(hardwareMap, telemetry);
     }
 
     public abstract void run();
@@ -47,6 +50,7 @@ public abstract class Dynawheels extends LinearOpMode {
     public void cleanup() {
         drivetrain.stop();
         roller.stop();
+        shooter.stop();
     }
 
     public void turnToAngle(double targetAngle) {

@@ -17,6 +17,7 @@ public class Roller {
     public Roller(HardwareMap hardwareMap, Telemetry telemetry) {
         roller = hardwareMap.get(DcMotorEx.class, "Roller");
         this.telemetry = telemetry;
+        telemetry.addData("Roller", "Initialized");
     }
 
     public void forward() {
