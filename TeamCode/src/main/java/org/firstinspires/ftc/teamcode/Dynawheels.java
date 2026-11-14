@@ -1,10 +1,8 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.acmerobotics.dashboard.FtcDashboard;
-import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.teamcode.subsystems.drivetrain.RobotDrive;
 import org.firstinspires.ftc.teamcode.subsystems.intake.Roller;
@@ -12,13 +10,6 @@ import org.firstinspires.ftc.teamcode.subsystems.outtake.Shooter;
 import org.firstinspires.ftc.teamcode.subsystems.sensors.ImuSensor;
 
 public abstract class Dynawheels extends LinearOpMode {
-    @Config
-    public static class DynawheelsConstant {
-        public static double TURN_TO_ANGLE_KP = 0.015;
-        public static double TURN_TO_ANGLE_MAX = 0.6;
-        public static double TURN_TO_ANGLE_TOLERANCE = 2.0;
-    }
-
     public RobotDrive drivetrain;
     public ImuSensor imu;
     public Roller roller;
@@ -34,8 +25,8 @@ public abstract class Dynawheels extends LinearOpMode {
         config();
         waitForStart();
 
-        try { run(); }
-        finally { cleanup(); }
+        run();
+        cleanup();
     }
 
     public void config() {
@@ -51,24 +42,5 @@ public abstract class Dynawheels extends LinearOpMode {
         drivetrain.stop();
         roller.stop();
         shooter.stop();
-    }
-
-    public void turnToAngle(Coords targetAngle) {
-        targetAngle = targetAngle.toDegrees();
-        double err = Integer.MAX_VALUE;
-
-        while (Math.abs(err) > DynawheelsConstant.TURN_TO_ANGLE_TOLERANCE) {
-            Coords curAngle = imu.getHeading().toDegrees();
-            err = targetAngle.getHeading() - curAngle.getHeading();
-            err = Coords.normalize(err, Coords.HeadingType.DEGREES);
-
-            double pwr = Range.clip(
-                    err * DynawheelsConstant.TURN_TO_ANGLE_KP,
-                    -Math.abs(DynawheelsConstant.TURN_TO_ANGLE_MAX),
-                    Math.abs(DynawheelsConstant.TURN_TO_ANGLE_MAX)
-            );
-            drivetrain.drive(0, 0, pwr);
-        }
-        drivetrain.stop();
     }
 }

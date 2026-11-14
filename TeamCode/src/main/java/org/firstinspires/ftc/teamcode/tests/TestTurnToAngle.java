@@ -2,11 +2,10 @@ package org.firstinspires.ftc.teamcode.tests;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.Coords;
 import org.firstinspires.ftc.teamcode.Dynawheels;
-import org.firstinspires.ftc.teamcode.subsystems.drivetrain.RobotDrive;
+import org.firstinspires.ftc.teamcode.actions.TurnDrivetrainTo;
 
 @Autonomous(name="TestTurnToAngle", group="TEST")
 public class TestTurnToAngle extends Dynawheels {
@@ -23,11 +22,13 @@ public class TestTurnToAngle extends Dynawheels {
         };
     }
 
-
     @Override
     public void run() {
         for (Coords heading : TurnToAngleTestConstants.headings) {
-            turnToAngle(heading);
+            TurnDrivetrainTo turnDrivetrainTo = new TurnDrivetrainTo(
+                    drivetrain, imu, heading
+            );
+            turnDrivetrainTo.runBlocking(this);
             sleep(1000);
         }
         drivetrain.stop();
