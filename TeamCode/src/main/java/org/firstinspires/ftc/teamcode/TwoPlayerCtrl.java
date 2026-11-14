@@ -27,6 +27,7 @@ public class TwoPlayerCtrl extends Dynawheels {
             else {
                 drivetrain.stop();
             }
+<<<<<<< HEAD
 
             if (gamepad1.left_trigger_pressed) roller.forward();
             else if (gamepad1.left_bumper) roller.backward();
@@ -42,9 +43,18 @@ public class TwoPlayerCtrl extends Dynawheels {
             telemetry.update();
             sleep(50);
         }
+=======
+>>>>>>> 111d475 (Made Shooter Class and Updated PIDF Testing)
 
-        if (gamepad1.right_trigger_pressed) roller.forward();
-        else if (gamepad1.right_bumper) roller.backward();
-        else roller.stop();
+            if (gamepad1.right_trigger_pressed) roller.forward();
+            else if (gamepad1.right_bumper) roller.backward();
+            else roller.stop();
+
+            if (gamepad1.rightTriggerWasPressed()) shooter.start();
+            else if (gamepad1.rightBumperWasPressed()) shooter.stop();
+
+            telemetry.update();
+            sleep(50);
+        }
     }
 }
