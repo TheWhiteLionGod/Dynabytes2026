@@ -16,7 +16,7 @@ public abstract class Dynawheels extends LinearOpMode {
     public static class DynawheelsConstant {
         public static double TURN_TO_ANGLE_KP = 0.015;
         public static double TURN_TO_ANGLE_MAX = 0.6;
-        public static double TURN_TO_ANGLE_TOLERANCE = Math.PI/90;
+        public static double TURN_TO_ANGLE_TOLERANCE = 2.0;
     }
 
     public RobotDrive drivetrain;
@@ -53,12 +53,14 @@ public abstract class Dynawheels extends LinearOpMode {
         shooter.stop();
     }
 
-    public void turnToAngle(double targetAngle) {
-        double err = Math.PI;
+    public void turnToAngle(Coords targetAngle) {
+        targetAngle = targetAngle.toDegrees();
+        double err = Integer.MAX_VALUE;
+
         while (Math.abs(err) > DynawheelsConstant.TURN_TO_ANGLE_TOLERANCE) {
-            double curAngle = imu.getHeading();
-            err = targetAngle - curAngle;
-            err = ImuSensor.angleWrap(err);
+            Coords curAngle = imu.getHeading().toDegrees();
+            err = targetAngle.getHeading() - curAngle.getHeading();
+            err = Coords.normalize(err, Coords.HeadingType.DEGREES);
 
             double pwr = Range.clip(
                     err * DynawheelsConstant.TURN_TO_ANGLE_KP,

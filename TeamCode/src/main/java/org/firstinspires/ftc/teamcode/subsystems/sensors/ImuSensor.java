@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.hardware.IMU;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.teamcode.Coords;
 
 public class ImuSensor {
     @Config
@@ -32,17 +33,9 @@ public class ImuSensor {
         telemetry.addData("IMU", "Initialized");
     }
 
-    public double getHeading() {
+    public Coords getHeading() {
         double heading = imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS);
         telemetry.addData("IMU", "Current Heading is " + heading);
-        return heading;
-    }
-
-    public static double angleWrap(double radians) {
-        return Math.IEEEremainder(radians, 2 * Math.PI);
-    }
-
-    public double angleWrap() {
-        return ImuSensor.angleWrap(getHeading());
+        return new Coords(heading, Coords.HeadingType.RADIANS);
     }
 }
