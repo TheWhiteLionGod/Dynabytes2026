@@ -23,6 +23,7 @@ public abstract class Dynawheels extends LinearOpMode {
         );
 
         config();
+        telemetry.update();
         waitForStart();
 
         run();

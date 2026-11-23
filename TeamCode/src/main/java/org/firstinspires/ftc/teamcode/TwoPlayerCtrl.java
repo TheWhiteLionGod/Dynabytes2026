@@ -2,8 +2,16 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import org.firstinspires.ftc.teamcode.subsystems.outtake.Shooter;
+
 @TeleOp(name="Two Player Controller", group="Controller")
 public class TwoPlayerCtrl extends Dynawheels {
+    @Override
+    public void config() {
+        Shooter.ShooterConstants.mode = Shooter.ShooterConstants.ShootingMode.POWER;
+        super.config();
+    }
+
     public void run() {
         while (opModeIsActive()) {
             if (gamepad1.left_stick_y != 0 ||
@@ -20,13 +28,17 @@ public class TwoPlayerCtrl extends Dynawheels {
                 drivetrain.stop();
             }
 
-            if (gamepad1.right_trigger_pressed) roller.forward();
-            else if (gamepad1.right_bumper) roller.backward();
+            if (gamepad1.left_trigger_pressed) roller.forward();
+            else if (gamepad1.left_bumper) roller.backward();
             else roller.stop();
 
             if (gamepad1.rightTriggerWasPressed()) shooter.start();
             else if (gamepad1.rightBumperWasPressed()) shooter.stop();
 
+            if (gamepad1.dpadUpWasPressed()) shooter.setPower(shooter.getPower() + 0.01);
+            else if (gamepad1.dpadDownWasPressed()) shooter.setPower(shooter.getPower() - 0.01);
+
+            telemetry.addData("Shooter Power", shooter.getPower());
             telemetry.update();
             sleep(50);
         }
