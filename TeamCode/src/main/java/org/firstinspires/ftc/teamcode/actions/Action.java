@@ -6,6 +6,7 @@ public interface Action {
     // Returns True if Done
     // Returns False if Incomplete / In Progress
     boolean run();
+    void interrupt();
 
     default void runBlocking(LinearOpMode opMode) {
         while (!run() && opMode.opModeIsActive()) {
