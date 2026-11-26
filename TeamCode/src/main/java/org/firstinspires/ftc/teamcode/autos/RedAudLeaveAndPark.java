@@ -4,8 +4,8 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.firstinspires.ftc.teamcode.Dynawheels;
 
-@Autonomous(name="AutoLeaveAndPark", group="AUTO")
-public class AutoLeaveAndPark extends Dynawheels {
+@Autonomous(name="Leave And Park Red Audience", group="RED-AUD")
+public class RedAudLeaveAndPark extends Dynawheels {
     @Override
     public void config() {
         super.config();
@@ -14,8 +14,18 @@ public class AutoLeaveAndPark extends Dynawheels {
 
     @Override
     public void run() {
-        // TODO: Actually Do Stuff
-        telemetry.addLine("NOT WRITTEN!");
+        drivetrain.forward(0.25);
+        sleep(100);
+
+        drivetrain.left(0.5);
+        sleep(1500);
+
+        drivetrain.forward(0.5);
+        sleep(1500);
+
+        drivetrain.left(0.25);
+        sleep(250);
+
         telemetry.update();
     }
 }
