@@ -19,7 +19,7 @@ public class TwoPlayerCtrl extends Dynawheels {
                     gamepad1.right_stick_x != 0
             ) {
                 drivetrain.drive(
-                        -gamepad1.left_stick_y,
+                        gamepad1.left_stick_y,
                         gamepad1.left_stick_x,
                         gamepad1.right_stick_x
                 );
@@ -33,7 +33,11 @@ public class TwoPlayerCtrl extends Dynawheels {
             else roller.stop();
 
             if (gamepad1.rightTriggerWasPressed()) shooter.start();
+            else if (gamepad1.yWasPressed()) shooter.reverse();
             else if (gamepad1.rightBumperWasPressed()) shooter.stop();
+
+            if (gamepad1.xWasPressed()) pollenStopper.up();
+            else if (gamepad1.bWasPressed()) pollenStopper.down();
 
             if (gamepad1.dpadUpWasPressed()) shooter.setPower(shooter.getPower() + 0.01);
             else if (gamepad1.dpadDownWasPressed()) shooter.setPower(shooter.getPower() - 0.01);

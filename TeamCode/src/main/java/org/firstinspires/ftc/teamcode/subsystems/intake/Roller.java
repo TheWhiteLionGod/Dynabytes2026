@@ -9,13 +9,14 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 public class Roller {
     @Config
     public static class RollerConstants {
-        public static double POWER = 0.5;
+        public static double POWER = 0.55;
     }
 
     private final DcMotorEx roller;
     private final Telemetry telemetry;
     public Roller(HardwareMap hardwareMap, Telemetry telemetry) {
         roller = hardwareMap.get(DcMotorEx.class, "Roller");
+        roller.setDirection(DcMotorEx.Direction.REVERSE);
         this.telemetry = telemetry;
         telemetry.addData("Roller", "Initialized");
     }

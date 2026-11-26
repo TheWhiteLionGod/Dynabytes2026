@@ -13,7 +13,8 @@ public class Shooter {
     public static class ShooterConstants {
         public static PIDFCoefficients PIDF = new PIDFCoefficients();
         public static double DEFAULT_SHOOTING_VEL = 3000;
-        public static double DEFAULT_SHOOTING_PWR = 0.65;
+        public static double DEFAULT_SHOOTING_PWR = 0.675;
+        public static double DEFAULT_REVERSE_PWR = 0.675;
         public static ShootingMode mode = ShootingMode.ENCODER;
 
         public enum ShootingMode {
@@ -52,10 +53,18 @@ public class Shooter {
                 break;
 
             case POWER:
-                shooter.setPower(power);
+                shooter.setPower(Math.abs(power));
                 break;
         }
         telemetry.addData("Shooter", "Spinning");
+    }
+
+    public void reverse() {
+        reverse(ShooterConstants.DEFAULT_REVERSE_PWR);
+    }
+
+    public void reverse(double pwr) {
+        shooter.setPower(-Math.abs(pwr));
     }
 
     public double getVelocity() {
@@ -71,7 +80,7 @@ public class Shooter {
     }
 
     public void setPower(double power) {
-        this.power = Math.min(1, Math.max(power, -1));
+        this.power = Math.min(1, Math.max(power, 0));
     }
 
     public void stop() {
